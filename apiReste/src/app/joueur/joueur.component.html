@@ -1,0 +1,46 @@
+<table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Âge</th>
+        <th>Niveau</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let joueur of joueurs; let i = index;">
+        <td>{{ joueur.nom }}</td>
+        <td>{{ joueur.prenom }}</td>
+        <td>{{ joueur.Categorie?.age}}</td>
+        <td>{{ joueur.Categorie?.niveau}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  
+  
+  <form (ngSubmit)="onSubmit()">
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="nouveauJoueur.nom" required>
+  
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" name="prenom" [(ngModel)]="nouveauJoueur.prenom" required>
+  
+    <label for="age">Âge:</label>
+    <input type="number" id="age" name="age" [(ngModel)]="nouveauJoueur.age" required>  
+  
+    <label for="niveau">Niveau</label>
+    <select id="niveau" name="niveau" [(ngModel)]="nouveauJoueur.niveau" required>
+    <option value="Debutant">Debutant</option>
+    <option value="Intermediare">Intermediare</option>
+    <option value="Expert">Expert</option>
+  </select>
+
+    <button type="submit">Ajouter</button>
+  </form>
+  <br>
+  <br>
+  
+  
+  
