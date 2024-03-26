@@ -14,6 +14,6 @@ export class ServicesComponent {
       return this.http.get("/api/joueur");
   }
   saveJoueur(joueur: any) {
-    return this.http.post("/api/joueur", joueur);
+    return this.http.post("/api/joueur/", joueur);
   }
 }
