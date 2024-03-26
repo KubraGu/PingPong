@@ -3,8 +3,17 @@ from bson import ObjectId
 from database import db
 
 joueur_collection = db.joueur
-def ajouter_joueur(joueur):
-    return joueur_collection.insert_one(joueur).inserted_id
+def ajouter_joueur(joueur_data):
+    try:
+        # Assurez-vous que joueur_data est un dictionnaire
+        if isinstance(joueur_data, dict):
+            joueur_id = joueur_collection.insert_one(joueur_data).inserted_id
+            return joueur_id
+        else:
+            raise TypeError("Le document doit être un dictionnaire Python")
+    except Exception as e:
+        print("Erreur lors de l'insertion du joueur :", e)
+        raise
 
 def obtenir_joueurs():
     joueurs = list(joueur_collection.find())

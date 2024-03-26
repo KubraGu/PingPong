@@ -7,8 +7,13 @@ joueur_bp = Blueprint('joueur_bp', __name__)
 
 @joueur_bp.route('/', methods=['POST'])
 def ajouter():
-    joueur_id = ajouter_joueur(request.json)
-    return jsonify({'resultat': 'Joueur ajouté avec succès', 'id': str(joueur_id)})
+    try:
+        data = request.json  # Récupérer les données JSON de la requête
+        joueur_id = ajouter_joueur(data)  # Appeler la fonction ajouter_joueur avec les données JSON converties en dict
+        return jsonify({'resultat': 'Joueur ajouté avec succès', 'id': str(joueur_id)})
+    except Exception as e:
+        return jsonify({'erreur': 'Erreur lors de l\'ajout du joueur'}), 500
+
 
 @joueur_bp.route('/', methods=['GET'])
 def obtenir_tous():
